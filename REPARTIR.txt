@@ -1,0 +1,14 @@
+-ALTA PRODUCTO			-----------------------------------------DAVID
+-BAJA PRODUCTO			-----------------------------------------DAVID
+-CONSULTA PRODUCTO		-----------------------------------------DAVID
+.MODIFICACIONES PRODUCTO	-----------------------------------------DAVID
+-CONSULTA VENTAS		-----------------------------------------EDWIN
+-CONSULTA PRODUCTOVENTA		-----------------------------------------EDWIN
+-corte mensual los dias 28	-----------------------------------------URI
+-productos que se ecuentran por debajo de x cantidad	-----------------URI
+-enlistar las ventas hechas en un dia y obtener el corte del dia X ------URI
+-cantidad de x producto vendidos en un dia	-------------------------URI
+-productos vendidos en x venta		---------------------------------URI
+-BAJA VENTA			-----------------------------------------EDWIN
+-ALTA VENTA 			-----------------------------------------DAVID
+-ALTA PRODUCTOVENTA		-----------------------------------------DAVID
