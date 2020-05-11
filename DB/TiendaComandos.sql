@@ -1,4 +1,9 @@
---LOPEZ PALMA CARLOS JONATHAN
+--García Martínez Uriel
+--López Palma Carlos Jonathan
+--Vázquez Rivera Edwin Misael
+--Velázquez Ramírez David
+
+
 
 CREATE DATABASE tienda;
 
@@ -94,4 +99,16 @@ WHERE venta.fecha=CURDATE()
 AND productoventa.idventa=venta.idventa 
 AND producto.id=productoventa.idproducto 
 ORDER BY productoventa.cantidad DESC;
+
+
+SELECT *
+FROM producto;
+
+SELECT *
+FROM venta;
+
+SELECT *
+FROM productoventa;
+
+
 
