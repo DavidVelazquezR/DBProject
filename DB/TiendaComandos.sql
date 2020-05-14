@@ -1,10 +1,3 @@
---García Martínez Uriel
---López Palma Carlos Jonathan
---Vázquez Rivera Edwin Misael
---Velázquez Ramírez David
-
-
-
 CREATE DATABASE tienda;
 
 USE tienda;
