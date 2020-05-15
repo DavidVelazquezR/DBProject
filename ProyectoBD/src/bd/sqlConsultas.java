@@ -39,20 +39,68 @@ public class sqlConsultas {
          return corte;   
         }                        
     }
-    public void visualizar_tabla(JTable tabla, String cant){
+    public float cortedia(){
+        float corte=0;
+        String var=null;
+        PreparedStatement ps = null;//Objeto que permite usar declaraciones preparadas por la libreria para un facil acceso a MySql
+        ResultSet rs = null;//Muestra Datos almacenados en la BD
+        Connection con;//objeto que permite la conexion a la BD(MySql)
+        
+        try{
+            con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD            
+            ps=con.prepareStatement("SELECT idventa AS Venta ,(SUM(total))  FROM venta WHERE fecha=CURDATE()");            
+            rs=ps.executeQuery();
+            if(rs.last()){
+                corte= rs.getFloat(2);
+            }            
+         return corte;   
+        }catch(Exception e){
+            System.err.println(e);
+         return corte;   
+        }                        
+    }
+    public void visualizar_tabla(JTable tabla,String condicion, String campos, String tablabd){
         Connection con;//objeto que permite la conexion a la BD(MySql) 
         con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
         Querys q = new Querys();
         DefaultTableModel atm=new editTabletrue();
         String []titulo=new String[] {"ID","Descripcion","Cantidad"};
-         
-        atm= q.SeleccionTable(con,cant, titulo);
-         
-         
-         tabla.setRowHeight(16);
-         tabla.setModel(atm);
-         
+        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
     }
-    
-    
+    public void visualizar_tabla2(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"Venta","Total"};
+        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
+    public void visualizar_tabla3(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};
+        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
+    public void visualizar_tabla4(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};
+        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
 }

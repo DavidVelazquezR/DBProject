@@ -228,20 +228,17 @@ public class Querys
     }
     
     
-    public DefaultTableModel SeleccionTable(Connection con, String cant,String[] titulo){   
+    public DefaultTableModel SeleccionTable(Connection con,String[] titulo, String condicion,String campos, String tabla){   
         DefaultTableModel modelatm=new editTabletrue();
         modelatm.setColumnIdentifiers(titulo);               
-        
-//        if (!condicion.equals("")){
-//            cond = " where " + condicion;
-//        }
-                
-        int num = Integer. parseInt(cant);
+                                
         try{
             Statement stmt = con.createStatement();
             
             
-            String myquery = "SELECT id ,descripcion ,cantidad  FROM producto WHERE cantidad < "+num+"  ORDER BY cantidad DESC;";                        
+            //String myquery = "SELECT id AS PRODUCTO ,descripcion ,cantidad  FROM producto WHERE cantidad < "+num+"  ORDER BY cantidad DESC";                        
+            
+            String myquery = " select " + campos + " from " + tabla + " where " + condicion;
             System.out.println(myquery); //impresion de pureba
             ResultSet rs = stmt.executeQuery(myquery);
 

@@ -19,9 +19,9 @@
 
 -corte mensual los dias 28	-----------------------------------------URI	HECHO
 -productos que se ecuentran por debajo de x cantidad	-----------------URI	HECHO
--enlistar las ventas hechas en un dia y obtener el corte del dia X ------URI
--cantidad de x producto vendidos en un dia	-------------------------URI
--productos vendidos en x venta		---------------------------------URI
+-enlistar las ventas hechas en un dia y obtener el corte del dia X ------URI	HECHO
+-cantidad de x producto vendidos en un dia	-------------------------URI	HECHO
+-productos vendidos en x venta		---------------------------------URI	HECHO
 
 
 
