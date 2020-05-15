@@ -21,7 +21,7 @@ public class ManipulaDBC
         Conexion x = new Conexion();
         try
         {
-            return x.Conecta("localhost:3306", "proyectotienda", "root", "", 2);
+            return x.Conecta("localhost:3306", "tienda", "root", "", 2);
         } catch (SQLException ex)
         {
             return null;

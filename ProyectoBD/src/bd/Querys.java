@@ -11,9 +11,12 @@ package bd;
  *
  *
  */
+import clases.editTabletrue;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 public class Querys
 {
@@ -222,6 +225,39 @@ public class Querys
         }
         System.out.println(datos.toString());
         return datos;
+    }
+    
+    
+    public DefaultTableModel SeleccionTable(Connection con, String cant,String[] titulo){   
+        DefaultTableModel modelatm=new editTabletrue();
+        modelatm.setColumnIdentifiers(titulo);               
+        
+//        if (!condicion.equals("")){
+//            cond = " where " + condicion;
+//        }
+                
+        int num = Integer. parseInt(cant);
+        try{
+            Statement stmt = con.createStatement();
+            
+            
+            String myquery = "SELECT id ,descripcion ,cantidad  FROM producto WHERE cantidad < "+num+"  ORDER BY cantidad DESC;";                        
+            System.out.println(myquery); //impresion de pureba
+            ResultSet rs = stmt.executeQuery(myquery);
 
+            while (rs.next()){                  
+                Vector<Object> reg = new Vector();
+                for (int i = 1; i < (rs.getMetaData().getColumnCount()) + 1; i++)
+                {  
+                    reg.add(rs.getObject(i));
+                }                                
+                modelatm.addRow(reg);               
+            }
+            return modelatm;            
+        } catch (Exception e){
+             System.out.println("Exception, no hay datos");
+        }
+        
+        return modelatm;
     }
 }
