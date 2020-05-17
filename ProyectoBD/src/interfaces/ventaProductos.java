@@ -70,6 +70,7 @@ public class ventaProductos extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTFProductID.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -80,7 +81,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jTFProductIDKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFProductID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 180, -1));
+        jPanel1.add(jTFProductID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 90, 180, -1));
 
         jTFCantID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -90,7 +91,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jTFCantIDKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCantID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 180, -1));
+        jPanel1.add(jTFCantID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 120, 180, -1));
 
         jTFSubtotal.setEnabled(false);
         jPanel1.add(jTFSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 180, -1));
@@ -103,23 +104,24 @@ public class ventaProductos extends javax.swing.JFrame {
         });
         jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, -1));
 
+        jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Venta de productos");
-        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 18, -1, -1));
 
         jLNamePro.setText("Id de venta:");
-        jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 60, -1, -1));
 
         jLabel1.setText("Id del producto:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 90, -1, -1));
 
         jLabel2.setText("Cantidad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 120, -1, -1));
 
         jLabel3.setText("Subtotal:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 336, -1, -1));
 
         jTFVentaID.setEnabled(false);
-        jPanel1.add(jTFVentaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 180, -1));
+        jPanel1.add(jTFVentaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 60, 180, -1));
 
         jBLimpia.setText("Limpiar");
         jBLimpia.addActionListener(new java.awt.event.ActionListener() {
@@ -129,21 +131,21 @@ public class ventaProductos extends javax.swing.JFrame {
         });
         jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
 
-        jLMinimizar.setText("Minimizar");
+        jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
         jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLMinimizarMouseClicked(evt);
             }
         });
-        jPanel1.add(jLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jPanel1.add(jLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 6, -1, -1));
 
-        jLCerrar.setText("Cerrar");
+        jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
         jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLCerrarMouseClicked(evt);
             }
         });
-        jPanel1.add(jLCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        jPanel1.add(jLCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, -1));
 
         jTVentas.setAutoCreateRowSorter(true);
         jTVentas.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -171,7 +173,7 @@ public class ventaProductos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTVentas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 380, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 186, 380, 130));
 
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +181,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

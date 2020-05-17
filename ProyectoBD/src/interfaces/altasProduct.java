@@ -72,6 +72,7 @@ public class altasProduct extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTFMarcaProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -152,8 +153,9 @@ public class altasProduct extends javax.swing.JFrame {
         });
         jPanel1.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
 
+        jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Altas de productos");
-        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 21, -1, -1));
+        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 18, -1, -1));
 
         jLNamePro.setText("Nombre del producto:");
         jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
@@ -199,21 +201,21 @@ public class altasProduct extends javax.swing.JFrame {
         });
         jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
-        jLMinimizar.setText("Minimizar");
+        jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
         jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLMinimizarMouseClicked(evt);
             }
         });
-        jPanel1.add(jLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jPanel1.add(jLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 6, -1, -1));
 
-        jLCerrar.setText("Cerrar");
+        jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
         jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLCerrarMouseClicked(evt);
             }
         });
-        jPanel1.add(jLCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        jPanel1.add(jLCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, -1));
 
         jTFIDProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
