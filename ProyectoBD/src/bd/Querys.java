@@ -249,7 +249,7 @@ public class Querys
                     reg.add(rs.getObject(i));
                 }                                
                 modelatm.addRow(reg);               
-            }
+            }            
             return modelatm;            
         } catch (Exception e){
              System.out.println("Exception, no hay datos");

@@ -39,6 +39,9 @@ public class sqlConsultas {
          return corte;   
         }                        
     }
+    
+    
+    
     public float cortedia(){
         float corte=0;
         String var=null;
@@ -64,8 +67,7 @@ public class sqlConsultas {
         con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
         Querys q = new Querys();
         DefaultTableModel atm=new editTabletrue();
-        String []titulo=new String[] {"ID","Descripcion","Cantidad"};
-        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        String []titulo=new String[] {"ID","Descripcion","Cantidad"};        
         atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
         tabla.setRowHeight(16);
         tabla.setModel(atm);         
@@ -75,8 +77,7 @@ public class sqlConsultas {
         con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
         Querys q = new Querys();
         DefaultTableModel atm=new editTabletrue();
-        String []titulo=new String[] {"Venta","Total"};
-        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        String []titulo=new String[] {"Venta","Total"};        
         atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
         tabla.setRowHeight(16);
         tabla.setModel(atm);         
@@ -86,9 +87,9 @@ public class sqlConsultas {
         con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
         Querys q = new Querys();
         DefaultTableModel atm=new editTabletrue();
-        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};
-        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
+        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};        
         atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
+        System.out.println("ATM: "+atm);
         tabla.setRowHeight(16);
         tabla.setModel(atm);         
     }
@@ -97,9 +98,9 @@ public class sqlConsultas {
         con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
         Querys q = new Querys();
         DefaultTableModel atm=new editTabletrue();
-        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};
-        //String condicion= "cantidad < "+cant+"  ORDER BY cantidad DESC";
-        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
+        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};        
+        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);
+        
         tabla.setRowHeight(16);
         tabla.setModel(atm);         
     }
