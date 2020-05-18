@@ -3,8 +3,8 @@
 -CONSULTA PRODUCTO		-----------------------------------------DAVID	HECHO
 -MODIFICACIONES PRODUCTO	-----------------------------------------DAVID	HECHO
 
--ALTA VENTA 			-----------------------------------------DAVID
--ALTA PRODUCTOVENTA		-----------------------------------------DAVID
+-ALTA VENTA 			-----------------------------------------DAVID	HECHO
+-ALTA PRODUCTOVENTA		-----------------------------------------DAVID	HECHO
 
 -MODIFICAR VENTA		-----------------------------------------
 -MODIFICAR PRODUCTOVENTA	-----------------------------------------

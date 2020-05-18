@@ -8,9 +8,12 @@ package interfaces;
 import bd.ManipulaDBC;
 import bd.Querys;
 import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,9 +24,16 @@ public class ventaProductos extends javax.swing.JFrame {
 
     Connection con;
     int xy, xx;
+    static int flag = 0;
+    static float precioF = 0;
+    int toDeleteIndex = -1;
+    DefaultTableModel model = new DefaultTableModel();
+    Querys q = new Querys();
+
     ArrayList<Object> columnaMap1 = new ArrayList();
+    ArrayList<Object> columnaMap2 = new ArrayList();
     ArrayList<Object> columnaMap3 = new ArrayList();
-    
+
     float precioTotal = 0;
 
     /**
@@ -60,6 +70,7 @@ public class ventaProductos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLMinimizar = new javax.swing.JLabel();
         jLCerrar = new javax.swing.JLabel();
+        jBEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta de productos");
@@ -105,7 +116,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBVenderActionPerformed(evt);
             }
         });
-        jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 408, 66, -1));
+        jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 408, 84, -1));
 
         jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Venta de productos");
@@ -132,7 +143,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBLimpiaActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 408, 66, -1));
+        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 408, 84, -1));
 
         jTVentas.setAutoCreateRowSorter(true);
         jTVentas.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -163,12 +174,18 @@ public class ventaProductos extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 222, 384, 130));
 
         jBAgregar.setText("Agregar");
+        jBAgregar.setEnabled(false);
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 186, 72, -1));
+        jBAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jBAgregarKeyPressed(evt);
+            }
+        });
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 186, 96, -1));
 
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -218,13 +235,19 @@ public class ventaProductos extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 444, 42));
 
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 186, 90, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,6 +290,7 @@ public class ventaProductos extends javax.swing.JFrame {
     private void jBLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiaActionPerformed
         CtrlInterfaz.limpia(jTFProductID, jTFCantID);
         CtrlInterfaz.selecciona(jTFProductID);
+        CtrlInterfaz.habilita(false, jBAgregar);
     }//GEN-LAST:event_jBLimpiaActionPerformed
 
     private void jLMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLMinimizarMouseClicked
@@ -283,7 +307,7 @@ public class ventaProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTVentasMouseClicked
 
     private void jTVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVentasMousePressed
-
+        toDeleteIndex = jTVentas.getSelectedRow();
     }//GEN-LAST:event_jTVentasMousePressed
 
     private void jTFProductIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFProductIDKeyTyped
@@ -303,13 +327,62 @@ public class ventaProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFCantIDKeyPressed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+
         mostrar();
         jBLimpiaActionPerformed(null);
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVenderActionPerformed
+
+        Date fecha = new Date();
+        Calendar c = Calendar.getInstance();
+        Querys q = new Querys();
+
+        String dia = Integer.toString(c.get(Calendar.DATE));
+        String mes = Integer.toString(c.get(Calendar.MONTH));
+        String annio = Integer.toString(c.get(Calendar.YEAR));
+
+        String values = "'" + jTFVentaID.getText() + "',"
+                + "'" + annio + "-" + mes + "-" + dia + "',"
+                + "'" + jTFSubtotal.getText() + "'";
+
+        try {
+            q.Insertar(con, "venta", values);
+
+        } catch (Exception e) {
+            System.out.println("Error en el INSERT 1...exception ->" + e);
+        }
+        values = "";
+        for (int i = 0; i < jTVentas.getRowCount(); i++) {
+
+            values = "'" + jTFVentaID.getText() + "',"
+                    + "'" + jTVentas.getValueAt(i, 0) + "',"
+                    + "'" + jTVentas.getValueAt(i, 2) + "',"
+                    + "'" + jTVentas.getValueAt(i, 3) + "'";
+            System.out.println(values);
+            try {
+                q.Insertar(con, "productoventa", values);
+
+            } catch (Exception e) {
+                System.out.println("Error en el INSERT 2...exception ->" + e);
+            }
+        }
+
+        Mensaje.exito(this, "Se realizo la venta correctamente el producto");
+        flag = 0;
+        precioF = 0;
+        toDeleteIndex = -1;
         jBLimpiaActionPerformed(null);
+        CtrlInterfaz.limpia(jTFSubtotal);
         precioTotal = 0;
+        values = "";
+        columnaMap1.clear();
+        columnaMap2.clear();
+        columnaMap3.clear();
+
+        formWindowOpened(null);
+        model.setRowCount(0);
+
     }//GEN-LAST:event_jBVenderActionPerformed
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
@@ -323,26 +396,39 @@ public class ventaProductos extends javax.swing.JFrame {
         xy = evt.getY();
     }//GEN-LAST:event_jPanel2MousePressed
 
-    private void mostrar() {
-        DefaultTableModel model = new DefaultTableModel();
-        Querys q = new Querys();
-        ArrayList<Object> columnaMap2 = new ArrayList();
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        try {
+            if (toDeleteIndex != -1) {
+                precioTotal -= (float) jTVentas.getValueAt(toDeleteIndex, 3);
 
-        int flag = 0;
-        float precioF = 0;
+                model.removeRow(toDeleteIndex);
+                jTFSubtotal.setText(String.valueOf(precioTotal));
+            }
+        } catch (Exception ex) {
+
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBAgregarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBAgregarKeyPressed
+        if (evt.getKeyChar() == '\n') {
+            jBAgregarActionPerformed(null);
+        }
+    }//GEN-LAST:event_jBAgregarKeyPressed
+
+    private void mostrar() {
         try {
             columnaMap2 = q.Seleccion(con, "id, precioventaun", "producto", "id='" + jTFProductID.getText() + "'", true);
 
             precioF = Float.parseFloat(jTFCantID.getText()) * Float.parseFloat((String) columnaMap2.get(1));
             precioTotal += precioF;
             jTFSubtotal.setText(String.valueOf(precioTotal));
-            
+
             columnaMap3.add(columnaMap2.get(0));
             columnaMap3.add(columnaMap2.get(1));
             columnaMap3.add(jTFCantID.getText());
             columnaMap3.add(precioF);
             System.out.println(columnaMap3.size());
-            
+
             model.setColumnIdentifiers(new Object[]{
                 "ID Producto", "Precio C/U", "Cantidad", "Precio Final"
             });
@@ -365,6 +451,7 @@ public class ventaProductos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
+    private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBLimpia;
     private javax.swing.JButton jBVender;
     private javax.swing.JLabel jLCerrar;
