@@ -1,6 +1,6 @@
--ALTA PRODUCTO			-----------------------------------------DAVID
--BAJA PRODUCTO			-----------------------------------------DAVID
--CONSULTA PRODUCTO		-----------------------------------------DAVID
+-ALTA PRODUCTO			-----------------------------------------DAVID	HECHO
+-BAJA PRODUCTO			-----------------------------------------DAVID	
+-CONSULTA PRODUCTO		-----------------------------------------DAVID	HECHO
 -MODIFICACIONES PRODUCTO	-----------------------------------------DAVID
 
 -ALTA VENTA 			-----------------------------------------DAVID

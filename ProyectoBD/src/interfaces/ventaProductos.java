@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class ventaProductos extends javax.swing.JFrame {
 
     Connection con;
+    int xy, xx;
     ArrayList<Object> columnaMap1 = new ArrayList();
     ArrayList<Object> columnaMap3 = new ArrayList();
     
@@ -53,13 +54,15 @@ public class ventaProductos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTFVentaID = new javax.swing.JTextField();
         jBLimpia = new javax.swing.JButton();
-        jLMinimizar = new javax.swing.JLabel();
-        jLCerrar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTVentas = new javax.swing.JTable();
         jBAgregar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLMinimizar = new javax.swing.JLabel();
+        jLCerrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Venta de productos");
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -81,7 +84,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jTFProductIDKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFProductID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 90, 180, -1));
+        jPanel1.add(jTFProductID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 126, 180, -1));
 
         jTFCantID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -91,10 +94,10 @@ public class ventaProductos extends javax.swing.JFrame {
                 jTFCantIDKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCantID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 120, 180, -1));
+        jPanel1.add(jTFCantID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 156, 180, -1));
 
         jTFSubtotal.setEnabled(false);
-        jPanel1.add(jTFSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 180, -1));
+        jPanel1.add(jTFSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 366, 180, -1));
 
         jBVender.setText("Vender");
         jBVender.addActionListener(new java.awt.event.ActionListener() {
@@ -102,26 +105,26 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBVenderActionPerformed(evt);
             }
         });
-        jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, -1));
+        jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 408, 66, -1));
 
         jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Venta de productos");
-        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 18, -1, -1));
+        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 54, 156, -1));
 
         jLNamePro.setText("Id de venta:");
-        jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 60, -1, -1));
+        jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 96, 102, -1));
 
         jLabel1.setText("Id del producto:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 90, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 126, 108, -1));
 
         jLabel2.setText("Cantidad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 120, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 156, 114, -1));
 
         jLabel3.setText("Subtotal:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 336, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 372, 78, -1));
 
         jTFVentaID.setEnabled(false);
-        jPanel1.add(jTFVentaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 60, 180, -1));
+        jPanel1.add(jTFVentaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 96, 180, -1));
 
         jBLimpia.setText("Limpiar");
         jBLimpia.addActionListener(new java.awt.event.ActionListener() {
@@ -129,23 +132,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBLimpiaActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
-
-        jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
-        jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLMinimizarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 6, -1, -1));
-
-        jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
-        jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLCerrarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, -1));
+        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 408, 66, -1));
 
         jTVentas.setAutoCreateRowSorter(true);
         jTVentas.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -173,7 +160,7 @@ public class ventaProductos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTVentas);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 186, 380, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 222, 384, 130));
 
         jBAgregar.setText("Agregar");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +168,55 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 150, -1, -1));
+        jPanel1.add(jBAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 186, 72, -1));
+
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+
+        jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
+        jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLMinimizarMouseClicked(evt);
+            }
+        });
+
+        jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
+        jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(359, Short.MAX_VALUE)
+                .addComponent(jLMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 444, 42));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,7 +228,9 @@ public class ventaProductos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -275,6 +312,17 @@ public class ventaProductos extends javax.swing.JFrame {
         precioTotal = 0;
     }//GEN-LAST:event_jBVenderActionPerformed
 
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
     private void mostrar() {
         DefaultTableModel model = new DefaultTableModel();
         Querys q = new Querys();
@@ -327,6 +375,7 @@ public class ventaProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCantID;
     private javax.swing.JTextField jTFProductID;

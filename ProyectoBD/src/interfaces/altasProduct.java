@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class altasProduct extends javax.swing.JFrame {
 
     Connection con;
+    int xy, xx;
     public ArrayList<Object> columnaMap1 = new ArrayList();
 
     /**
@@ -56,14 +57,16 @@ public class altasProduct extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTFNomProduct = new javax.swing.JTextField();
         jBLimpia = new javax.swing.JButton();
-        jLMinimizar = new javax.swing.JLabel();
-        jLCerrar = new javax.swing.JLabel();
         jTFIDProduct = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTFMedidaPesoProduct = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLMinimizar = new javax.swing.JLabel();
+        jLCerrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Altas de productos");
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -90,7 +93,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFMarcaProductKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFMarcaProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 132, 180, -1));
+        jPanel1.add(jTFMarcaProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 156, 180, -1));
 
         jTFCant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -100,7 +103,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFCantKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 192, 180, -1));
+        jPanel1.add(jTFCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 216, 180, -1));
 
         jTFPrecComp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -110,7 +113,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFPrecCompKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFPrecComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 222, 180, -1));
+        jPanel1.add(jTFPrecComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 246, 180, -1));
 
         jTFPrecVU.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -120,7 +123,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFPrecVUKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFPrecVU, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 252, 180, -1));
+        jPanel1.add(jTFPrecVU, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 276, 180, -1));
 
         jTFPrecVM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -130,7 +133,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFPrecVMKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFPrecVM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 282, 180, -1));
+        jPanel1.add(jTFPrecVM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 306, 180, -1));
 
         jTFCantMM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -140,7 +143,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFCantMMKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCantMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 312, 180, -1));
+        jPanel1.add(jTFCantMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 336, 180, -1));
 
         jBIngresar.setText("Ingresar producto");
         jBIngresar.setEnabled(false);
@@ -154,32 +157,32 @@ public class altasProduct extends javax.swing.JFrame {
                 jBIngresarKeyPressed(evt);
             }
         });
-        jPanel1.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 348, -1, -1));
+        jPanel1.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 372, -1, -1));
 
         jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Altas de productos");
-        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 18, -1, -1));
+        jPanel1.add(jLTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 54, -1, -1));
 
         jLNamePro.setText("Nombre del producto:");
-        jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 126, -1, -1));
 
         jLabel1.setText("Medida o peso:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 162, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 186, -1, -1));
 
         jLabel2.setText("Cantidad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 192, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 216, -1, -1));
 
         jLabel3.setText("Precio de compra:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 222, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 246, -1, -1));
 
         jLabel4.setText("Precio de venta por unidad: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 252, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 276, -1, -1));
 
         jLabel5.setText("Precio de venta por mayoreo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 282, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 306, -1, -1));
 
         jLabel6.setText("Cantidad minima de mayoreo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 312, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 336, -1, -1));
 
         jTFNomProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,7 +197,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFNomProductKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFNomProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 180, -1));
+        jPanel1.add(jTFNomProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 126, 180, -1));
 
         jBLimpia.setText("Limpiar");
         jBLimpia.addActionListener(new java.awt.event.ActionListener() {
@@ -202,23 +205,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jBLimpiaActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 348, -1, -1));
-
-        jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
-        jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLMinimizarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 6, -1, -1));
-
-        jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
-        jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLCerrarMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 6, -1, -1));
+        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 372, -1, -1));
 
         jTFIDProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,13 +220,13 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFIDProductKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFIDProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 180, -1));
+        jPanel1.add(jTFIDProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 96, 180, -1));
 
         jLabel7.setText("ID del producto:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 96, -1, -1));
 
         jLabel8.setText("Marca del producto:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 156, -1, -1));
 
         jTFMedidaPesoProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +241,55 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFMedidaPesoProductKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFMedidaPesoProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 162, 180, -1));
+        jPanel1.add(jTFMedidaPesoProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 186, 180, -1));
+
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+
+        jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
+        jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLMinimizarMouseClicked(evt);
+            }
+        });
+
+        jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
+        jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(356, Short.MAX_VALUE)
+                .addComponent(jLMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 444, 42));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,7 +301,7 @@ public class altasProduct extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
         );
 
         pack();
@@ -437,6 +472,17 @@ public class altasProduct extends javax.swing.JFrame {
         Validaciones.validaAlfanumerico(evt);
     }//GEN-LAST:event_jTFMedidaPesoProductKeyTyped
 
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -455,6 +501,7 @@ public class altasProduct extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTFCant;
     private javax.swing.JTextField jTFCantMM;
     private javax.swing.JTextField jTFIDProduct;
