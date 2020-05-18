@@ -44,6 +44,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu principal");
@@ -65,10 +67,10 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 72, -1, -1));
 
         jLabel2.setText("Altas de productos");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 189, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 186, -1, -1));
 
         jLabel4.setText("Venta de productos");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 189, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 186, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/altasP.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,7 +78,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 146, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 138, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/venta.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,10 +86,10 @@ public class menuPrincipal extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 144, -1, -1));
 
         jLabel6.setText("Ventas realizadas");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 189, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 186, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ventasRealizadas.png"))); // NOI18N
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -95,7 +97,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 jLabel7MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 150, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 144, -1, -1));
 
         jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -146,7 +148,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 515, 35));
 
         jLConsultasProduct.setText("Consulta de productos");
-        jPanel1.add(jLConsultasProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 189, -1, -1));
+        jPanel1.add(jLConsultasProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 186, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/consultasProduct.png"))); // NOI18N
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,7 +156,7 @@ public class menuPrincipal extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 144, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 138, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bajaProducto.png"))); // NOI18N
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -162,10 +164,21 @@ public class menuPrincipal extends javax.swing.JFrame {
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 228, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 228, -1, -1));
 
         jLabel9.setText("Baja de productos");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 270, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 270, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/modifiacionProducto.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 228, -1, -1));
+
+        jLabel12.setText("Modificación de productos");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 270, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -232,6 +245,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         new bajasProduct().setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        this.dispose();
+        new modificaProduct().setVisible(true);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -273,6 +291,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLMinimizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
