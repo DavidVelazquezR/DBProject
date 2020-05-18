@@ -60,6 +60,8 @@ public class altasProduct extends javax.swing.JFrame {
         jLCerrar = new javax.swing.JLabel();
         jTFIDProduct = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTFMedidaPesoProduct = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -88,7 +90,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFMarcaProductKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFMarcaProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 180, -1));
+        jPanel1.add(jTFMarcaProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 132, 180, -1));
 
         jTFCant.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -98,7 +100,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFCantKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 180, -1));
+        jPanel1.add(jTFCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 192, 180, -1));
 
         jTFPrecComp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -108,7 +110,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFPrecCompKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFPrecComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 180, -1));
+        jPanel1.add(jTFPrecComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 222, 180, -1));
 
         jTFPrecVU.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -118,7 +120,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFPrecVUKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFPrecVU, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 180, -1));
+        jPanel1.add(jTFPrecVU, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 252, 180, -1));
 
         jTFPrecVM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -128,7 +130,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFPrecVMKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFPrecVM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 180, -1));
+        jPanel1.add(jTFPrecVM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 282, 180, -1));
 
         jTFCantMM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -138,7 +140,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jTFCantMMKeyTyped(evt);
             }
         });
-        jPanel1.add(jTFCantMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 180, -1));
+        jPanel1.add(jTFCantMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 312, 180, -1));
 
         jBIngresar.setText("Ingresar producto");
         jBIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +153,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jBIngresarKeyPressed(evt);
             }
         });
-        jPanel1.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, -1, -1));
+        jPanel1.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 348, -1, -1));
 
         jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Altas de productos");
@@ -160,23 +162,23 @@ public class altasProduct extends javax.swing.JFrame {
         jLNamePro.setText("Nombre del producto:");
         jPanel1.add(jLNamePro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
-        jLabel1.setText("Marca del producto:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jLabel1.setText("Medida o peso:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 162, -1, -1));
 
         jLabel2.setText("Cantidad:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 192, -1, -1));
 
         jLabel3.setText("Precio de compra:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 222, -1, -1));
 
         jLabel4.setText("Precio de venta por unidad: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 252, -1, -1));
 
         jLabel5.setText("Precio de venta por mayoreo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 282, -1, -1));
 
         jLabel6.setText("Cantidad minima de mayoreo:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 312, -1, -1));
 
         jTFNomProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,7 +201,7 @@ public class altasProduct extends javax.swing.JFrame {
                 jBLimpiaActionPerformed(evt);
             }
         });
-        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+        jPanel1.add(jBLimpia, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 348, -1, -1));
 
         jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
         jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -232,8 +234,26 @@ public class altasProduct extends javax.swing.JFrame {
         });
         jPanel1.add(jTFIDProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 180, -1));
 
-        jLabel7.setText("ID del porducto:");
+        jLabel7.setText("ID del producto:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        jLabel8.setText("Marca del producto:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jTFMedidaPesoProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFMedidaPesoProductActionPerformed(evt);
+            }
+        });
+        jTFMedidaPesoProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTFMedidaPesoProductKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFMedidaPesoProductKeyTyped(evt);
+            }
+        });
+        jPanel1.add(jTFMedidaPesoProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 162, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,7 +282,7 @@ public class altasProduct extends javax.swing.JFrame {
 
     private void jBLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiaActionPerformed
         CtrlInterfaz.limpia(jTFIDProduct, jTFCant, jTFCantMM, jTFMarcaProduct, jTFNomProduct,
-                jTFPrecComp, jTFPrecVM, jTFPrecVU);
+                jTFPrecComp, jTFPrecVM, jTFPrecVU, jTFMedidaPesoProduct);
         CtrlInterfaz.selecciona(jTFIDProduct);
     }//GEN-LAST:event_jBLimpiaActionPerformed
 
@@ -288,7 +308,7 @@ public class altasProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFMarcaProductKeyTyped
 
     private void jTFMarcaProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFMarcaProductKeyPressed
-        Validaciones.enter(this, evt, jTFCant);
+        Validaciones.enter(this, evt, jTFMedidaPesoProduct);
     }//GEN-LAST:event_jTFMarcaProductKeyPressed
 
     private void jTFCantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCantKeyTyped
@@ -342,7 +362,6 @@ public class altasProduct extends javax.swing.JFrame {
 
         Querys q = new Querys();
         boolean flag = false;
-
         try {
             columnaMap1 = q.Seleccion(con, "id", "producto", "", false);
         } catch (Exception e) {
@@ -350,20 +369,20 @@ public class altasProduct extends javax.swing.JFrame {
         }
 
         for (int i = 0; i < columnaMap1.size(); i++) {
-            if (columnaMap1.get(i).equals(jTFIDProduct.getText())) {
+            if (columnaMap1.get(i).toString().trim().equals( jTFIDProduct.getText())) {
                 flag = false;
                 break;
             } else {
                 flag = true;
             }
         }
-        if (flag == false) {
+        if (!flag) {
             Mensaje.error(this, "El ID esta siendo ocupado por otro producto\n"
                     + "Ingrese un ID diferente");
-        } else if (flag == true) {
-            String columns = "id,descripcion,cantidad,preciocomp,precioventaun,precioventama,cantmayoreo";
+        } else {
+            String columns = "";
             String values = "'" + jTFIDProduct.getText() + "',"
-                    + "'" + jTFNomProduct.getText() + "," + jTFMarcaProduct.getText() + "',"
+                    + "'" + jTFNomProduct.getText() + " " + jTFMarcaProduct.getText() + " " + jTFMarcaProduct.getText() + "',"
                     + "'" + jTFCant.getText() + "',"
                     + "'" + jTFPrecComp.getText() + "',"
                     + "'" + jTFPrecVU.getText() + "',"
@@ -371,12 +390,14 @@ public class altasProduct extends javax.swing.JFrame {
                     + "'" + jTFCantMM.getText() + "'";
 
             try {
-                q.Insertar(con, "producto", columns, values);
+                q.Insertar(con, "producto", values);
             } catch (Exception e) {
                 System.out.println("Error en el INSERT...exception ->" + e);
             }
 
-            Mensaje.exito(this, "Se dio de alta correcatmente el prodcuto");
+            Mensaje.exito(this, "Se dio de alta correctamente el producto");
+            jBLimpiaActionPerformed(evt);
+            flag = false;
         }
 
         this.setCursor(DEFAULT_CURSOR);
@@ -402,6 +423,18 @@ public class altasProduct extends javax.swing.JFrame {
         Validaciones.validaEntero(evt);
     }//GEN-LAST:event_jTFIDProductKeyTyped
 
+    private void jTFMedidaPesoProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFMedidaPesoProductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFMedidaPesoProductActionPerformed
+
+    private void jTFMedidaPesoProductKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFMedidaPesoProductKeyPressed
+        Validaciones.enter(this, evt, jTFCant);
+    }//GEN-LAST:event_jTFMedidaPesoProductKeyPressed
+
+    private void jTFMedidaPesoProductKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFMedidaPesoProductKeyTyped
+        Validaciones.validaAlfanumerico(evt);
+    }//GEN-LAST:event_jTFMedidaPesoProductKeyTyped
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,11 +451,13 @@ public class altasProduct extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFCant;
     private javax.swing.JTextField jTFCantMM;
     private javax.swing.JTextField jTFIDProduct;
     private javax.swing.JTextField jTFMarcaProduct;
+    private javax.swing.JTextField jTFMedidaPesoProduct;
     private javax.swing.JTextField jTFNomProduct;
     private javax.swing.JTextField jTFPrecComp;
     private javax.swing.JTextField jTFPrecVM;
