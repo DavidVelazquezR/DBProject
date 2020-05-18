@@ -143,6 +143,7 @@ public class altasProduct extends javax.swing.JFrame {
         jPanel1.add(jTFCantMM, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 312, 180, -1));
 
         jBIngresar.setText("Ingresar producto");
+        jBIngresar.setEnabled(false);
         jBIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBIngresarActionPerformed(evt);
@@ -283,6 +284,7 @@ public class altasProduct extends javax.swing.JFrame {
     private void jBLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiaActionPerformed
         CtrlInterfaz.limpia(jTFIDProduct, jTFCant, jTFCantMM, jTFMarcaProduct, jTFNomProduct,
                 jTFPrecComp, jTFPrecVM, jTFPrecVU, jTFMedidaPesoProduct);
+        CtrlInterfaz.habilita(false, jBIngresar);
         CtrlInterfaz.selecciona(jTFIDProduct);
     }//GEN-LAST:event_jBLimpiaActionPerformed
 
