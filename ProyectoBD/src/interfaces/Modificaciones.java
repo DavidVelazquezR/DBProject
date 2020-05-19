@@ -7,9 +7,12 @@ package interfaces;
 
 import bd.ManipulaDBC;
 import bd.Querys;
+import bd.sqlConsultas;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,8 +20,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,13 +34,47 @@ public class Modificaciones extends javax.swing.JFrame {
     Connection con;
     int xy, xx;
     public ArrayList<Object> columnaMap1 = new ArrayList();
-
+     sqlConsultas consult= new sqlConsultas();
+     
     /**
      * Creates new form Modificaciones
      */
     public Modificaciones() {
         initComponents();
         ((JTextField) this.calendario.getDateEditor()).setEditable(false);  
+        popupmenu();
+    }
+    public void popupmenu(){
+    JPopupMenu popupMenu = new JPopupMenu();
+    JMenuItem menuItemAdd = new JMenuItem("Modificar");
+    menuItemAdd.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           
+            
+            Querys q = new Querys();
+            
+            if (jTable1.getSelectedColumn()==1) {
+                String columnas = "cantidad";
+            
+            String values =
+            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
+            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0));          
+            }else if (jTable1.getSelectedColumn()==2) {
+               String columnas = "subtotal";
+            
+            String values = 
+            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
+            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());  
+            }
+
+            
+           
+       
+        }
+    });
+    popupMenu.add(menuItemAdd);
+    jTable1.setComponentPopupMenu(popupMenu);
     }
     
      
@@ -47,6 +87,7 @@ public class Modificaciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -58,6 +99,13 @@ public class Modificaciones extends javax.swing.JFrame {
         totaltxt = new javax.swing.JTextField();
         btnModV = new javax.swing.JButton();
         btnLimpiarV = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        idventaPtxt = new javax.swing.JTextField();
+        btnMostrarVP = new javax.swing.JButton();
+        btnLimpiarVP = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLMinimizar = new javax.swing.JLabel();
         jLCerrar = new javax.swing.JLabel();
 
@@ -204,10 +252,105 @@ public class Modificaciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fechatxt1)
                     .addComponent(totaltxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Venta", jPanel1);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel8.setText("ID venta:");
+
+        idventaPtxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idventaPtxtKeyPressed(evt);
+            }
+        });
+
+        btnMostrarVP.setText("Mostrar producto-venta");
+        btnMostrarVP.setEnabled(false);
+        btnMostrarVP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarVPActionPerformed(evt);
+            }
+        });
+        btnMostrarVP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnMostrarVPKeyPressed(evt);
+            }
+        });
+
+        btnLimpiarVP.setText("Limpiar");
+        btnLimpiarVP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarVPActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "idproducto", "cantidad", "subtotal"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(idventaPtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnMostrarVP)
+                                .addGap(59, 59, 59)
+                                .addComponent(btnLimpiarVP)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(idventaPtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarVP)
+                    .addComponent(btnLimpiarVP))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("ProductoVenta", jPanel3);
 
         jLMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize1.png"))); // NOI18N
         jLMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,8 +378,8 @@ public class Modificaciones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
         );
 
         pack();
@@ -382,6 +525,37 @@ public class Modificaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_calendarioInputMethodTextChanged
 
+    private void btnMostrarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVPActionPerformed
+        String campos= "idproducto, cantidad, subtotal";
+        String bd= "productoventa";
+        String condicion= "idventa= "+idventaPtxt.getText();
+        consult.visualizar_tabla5(jTable1,condicion,campos, bd);
+    }//GEN-LAST:event_btnMostrarVPActionPerformed
+
+    private void btnMostrarVPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVPKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMostrarVPKeyPressed
+
+    private void btnLimpiarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVPActionPerformed
+         CtrlInterfaz.limpia(idventaPtxt);
+        
+        CtrlInterfaz.selecciona(idventaPtxt);
+       DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        int a = jTable1.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {          
+        tb.removeRow(tb.getRowCount()-1);
+        }
+        
+    }//GEN-LAST:event_btnLimpiarVPActionPerformed
+
+    private void idventaPtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idventaPtxtKeyPressed
+        Validaciones.enterEntero(this, evt, idventaPtxt, btnMostrarVP);
+    }//GEN-LAST:event_idventaPtxtKeyPressed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -389,17 +563,25 @@ public class Modificaciones extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiarV;
+    private javax.swing.JButton btnLimpiarVP;
     private javax.swing.JButton btnModV;
     private javax.swing.JButton btnMostrarV;
+    private javax.swing.JButton btnMostrarVP;
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JLabel fechatxt;
     private javax.swing.JLabel fechatxt1;
     private javax.swing.JTextField idVentatxt;
+    private javax.swing.JTextField idventaPtxt;
     private javax.swing.JLabel jLCerrar;
     private javax.swing.JLabel jLMinimizar;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField totaltxt;
     // End of variables declaration//GEN-END:variables
 }

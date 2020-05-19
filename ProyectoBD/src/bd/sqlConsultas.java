@@ -104,4 +104,15 @@ public class sqlConsultas {
         tabla.setRowHeight(16);
         tabla.setModel(atm);         
     }
+    public void visualizar_tabla5(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"ID Producto","Cantidad", "Subtotal"};        
+        atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);
+        
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
 }
