@@ -42,49 +42,8 @@ public class Borrar extends javax.swing.JFrame {
     public Borrar() {
         initComponents();
         ((JTextField) this.calendario.getDateEditor()).setEditable(false);  
-        popupmenu();
     }
-    public void popupmenu(){
-    JPopupMenu popupMenu = new JPopupMenu();
-    JMenuItem menuItemAdd = new JMenuItem("Borrar");
-    menuItemAdd.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-           
- 
-            
-//            if (jTable1.getSelectedColumn()==1) {
-//                String columnas = "cantidad";
-//            
-//            String values =
-//            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
-//            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0));          
-//            }else if (jTable1.getSelectedColumn()==2) {
-//               String columnas = "subtotal";
-//            
-//            String values = 
-//            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
-//            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());  
-//            }
-
-           
-            Querys q = new Querys();
-            
-                q.Delete(con, "productoventa", "idventa",  idventaPtxt.getText());
-        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
-        int a = jTable1.getRowCount()-1;
-        for (int i = a; i >= 0; i--) {          
-        tb.removeRow(tb.getRowCount()-1);
-        }
-          
-       
-           
-       
-        }
-    });
-    popupMenu.add(menuItemAdd);
-    jTable1.setComponentPopupMenu(popupMenu);
-    }
+    
      
      
     /**
@@ -115,6 +74,7 @@ public class Borrar extends javax.swing.JFrame {
         btnLimpiarVP = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnModVP = new javax.swing.JButton();
         jLMinimizar = new javax.swing.JLabel();
         jLCerrar = new javax.swing.JLabel();
 
@@ -274,6 +234,9 @@ public class Borrar extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 idventaPtxtKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idventaPtxtKeyTyped(evt);
+            }
         });
 
         btnMostrarVP.setText("Mostrar producto-venta");
@@ -315,12 +278,26 @@ public class Borrar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setEnabled(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        btnModVP.setText("Borrar");
+        btnModVP.setEnabled(false);
+        btnModVP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModVPActionPerformed(evt);
+            }
+        });
+        btnModVP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnModVPKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -339,7 +316,9 @@ public class Borrar extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnMostrarVP)
                                 .addGap(59, 59, 59)
-                                .addComponent(btnLimpiarVP)))
+                                .addComponent(btnLimpiarVP)
+                                .addGap(90, 90, 90)
+                                .addComponent(btnModVP)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -353,7 +332,8 @@ public class Borrar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMostrarVP)
-                    .addComponent(btnLimpiarVP))
+                    .addComponent(btnLimpiarVP)
+                    .addComponent(btnModVP))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(106, Short.MAX_VALUE))
@@ -487,6 +467,7 @@ public class Borrar extends javax.swing.JFrame {
         
         CtrlInterfaz.habilita(false, btnMostrarV, btnModV,((JTextField) this.calendario.getDateEditor()), totaltxt);
         CtrlInterfaz.selecciona(idVentatxt);
+        btnModVP.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarVActionPerformed
 
     private void idVentatxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idVentatxtKeyPressed
@@ -530,14 +511,20 @@ public class Borrar extends javax.swing.JFrame {
     }//GEN-LAST:event_calendarioInputMethodTextChanged
 
     private void btnMostrarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVPActionPerformed
+        this.setCursor(WAIT_CURSOR);
         String campos= "idproducto, cantidad, subtotal";
         String bd= "productoventa";
         String condicion= "idventa= "+idventaPtxt.getText();
         consult.visualizar_tabla5(jTable1,condicion,campos, bd);
+        this.setCursor(DEFAULT_CURSOR);
     }//GEN-LAST:event_btnMostrarVPActionPerformed
 
     private void btnMostrarVPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVPKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyChar() == '\n') {
+            btnMostrarVPActionPerformed(null);
+           
+           btnModVP.setEnabled(true);
+        }
     }//GEN-LAST:event_btnMostrarVPKeyPressed
 
     private void btnLimpiarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVPActionPerformed
@@ -560,6 +547,36 @@ public class Borrar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void btnModVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModVPActionPerformed
+        if (Mensaje.pregunta(this, "¿Esta seguro de que desea eliminar el siguiente registro?") == JOptionPane.YES_OPTION) {
+            Querys q = new Querys();
+            try {
+                q.Delete(con, "productoventa", "idventa",  idventaPtxt.getText());
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        int a = jTable1.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {          
+        tb.removeRow(tb.getRowCount()-1);
+        }
+          
+            } catch (Exception e) {
+                System.out.println("Error en el INSERT...exception ->" + e);
+            }
+            
+            Mensaje.exito(this, "Se ha eliminado el registro con exito");
+        }else{
+            Mensaje.error(this, "No se ha borrado el registro");
+        }
+        btnLimpiarVActionPerformed(evt);
+    }//GEN-LAST:event_btnModVPActionPerformed
+
+    private void btnModVPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnModVPKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModVPKeyPressed
+
+    private void idventaPtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idventaPtxtKeyTyped
+        Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_idventaPtxtKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -569,6 +586,7 @@ public class Borrar extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiarV;
     private javax.swing.JButton btnLimpiarVP;
     private javax.swing.JButton btnModV;
+    private javax.swing.JButton btnModVP;
     private javax.swing.JButton btnMostrarV;
     private javax.swing.JButton btnMostrarVP;
     private com.toedter.calendar.JDateChooser calendario;
