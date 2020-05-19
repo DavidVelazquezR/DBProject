@@ -9,8 +9,8 @@
 -MODIFICAR VENTA		-----------------------------------------HECHO
 -MODIFICAR PRODUCTOVENTA	-----------------------------------------HECHO
 
--BAJA VENTA			-----------------------------------------EDWIN
--BAJA PRODUCTOVENTA		-----------------------------------------EDWIN
+-BAJA VENTA			-----------------------------------------EDWIN HECHO
+-BAJA PRODUCTOVENTA		-----------------------------------------EDWIN HECHO
 
 -CONSULTA PRODUCTOVENTA		-----------------------------------------EDWIN
 -CONSULTA VENTAS		-----------------------------------------EDWIN
