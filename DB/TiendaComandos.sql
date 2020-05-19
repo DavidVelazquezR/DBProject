@@ -103,5 +103,3 @@ FROM venta;
 SELECT *
 FROM productoventa;
 
-
-
