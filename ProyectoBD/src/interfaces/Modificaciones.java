@@ -76,7 +76,7 @@ public class Modificaciones extends javax.swing.JFrame {
     popupMenu.add(menuItemAdd);
     jTable1.setComponentPopupMenu(popupMenu);
     }
-    
+     
      
     /**
      * This method is called from within the constructor to initialize the form.
