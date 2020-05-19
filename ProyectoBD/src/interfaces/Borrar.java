@@ -349,6 +349,16 @@ public class Borrar extends javax.swing.JFrame {
         });
 
         jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
+        jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLCerrarMouseClicked(evt);
+            }
+        });
+        jLCerrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLCerrarKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -574,6 +584,15 @@ public class Borrar extends javax.swing.JFrame {
     private void idventaPtxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idventaPtxtKeyTyped
         Validaciones.validaEntero(evt);
     }//GEN-LAST:event_idventaPtxtKeyTyped
+
+    private void jLCerrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLCerrarKeyPressed
+        
+    }//GEN-LAST:event_jLCerrarKeyPressed
+
+    private void jLCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCerrarMouseClicked
+        this.dispose();
+        new menuPrincipal().setVisible(true);
+    }//GEN-LAST:event_jLCerrarMouseClicked
 
     /**
      * @param args the command line arguments

@@ -31,53 +31,50 @@ import javax.swing.table.DefaultTableModel;
  * @author Edwin
  */
 public class Modificaciones extends javax.swing.JFrame {
+
     Connection con;
     int xy, xx;
     public ArrayList<Object> columnaMap1 = new ArrayList();
-     sqlConsultas consult= new sqlConsultas();
-     
+    sqlConsultas consult = new sqlConsultas();
+
     /**
      * Creates new form Modificaciones
      */
     public Modificaciones() {
         initComponents();
-        ((JTextField) this.calendario.getDateEditor()).setEditable(false);  
+        ((JTextField) this.calendario.getDateEditor()).setEditable(false);
         popupmenu();
     }
-    public void popupmenu(){
-    JPopupMenu popupMenu = new JPopupMenu();
-    JMenuItem menuItemAdd = new JMenuItem("Modificar");
-    menuItemAdd.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-           
-            
-            Querys q = new Querys();
-            
-            if (jTable1.getSelectedColumn()==1) {
-                String columnas = "cantidad";
-            
-            String values =
-            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
-            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0));          
-            }else if (jTable1.getSelectedColumn()==2) {
-               String columnas = "subtotal";
-            
-            String values = 
-            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
-            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());  
-            }
 
-            
-           
-       
-        }
-    });
-    popupMenu.add(menuItemAdd);
-    jTable1.setComponentPopupMenu(popupMenu);
+    public void popupmenu() {
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem menuItemAdd = new JMenuItem("Modificar");
+        menuItemAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Querys q = new Querys();
+
+                if (jTable1.getSelectedColumn() == 1) {
+                    String columnas = "cantidad";
+
+                    String values
+                            = "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString() + "'";
+                    q.Modificar(con, "productoventa", columnas, values, "idventa = " + idventaPtxt.getText() + " AND " + "idproducto = " + jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                } else if (jTable1.getSelectedColumn() == 2) {
+                    String columnas = "subtotal";
+
+                    String values
+                            = "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString() + "'";
+                    q.Modificar(con, "productoventa", columnas, values, "idventa = " + idventaPtxt.getText() + " AND " + "idproducto = " + jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                }
+
+            }
+        });
+        popupMenu.add(menuItemAdd);
+        jTable1.setComponentPopupMenu(popupMenu);
     }
-     
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -360,6 +357,11 @@ public class Modificaciones extends javax.swing.JFrame {
         });
 
         jLCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/return1.png"))); // NOI18N
+        jLCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLCerrarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -406,7 +408,7 @@ public class Modificaciones extends javax.swing.JFrame {
         }
 
         for (int i = 0; i < columnaMap1.size(); i++) {
-            if (columnaMap1.get(i).toString().trim().equals( idVentatxt.getText())) {
+            if (columnaMap1.get(i).toString().trim().equals(idVentatxt.getText())) {
                 flag = false;
                 break;
             } else {
@@ -415,7 +417,7 @@ public class Modificaciones extends javax.swing.JFrame {
         }
         if (flag) {
             Mensaje.error(this, "El ID que intenta buscar no existe\n"
-                + "Intente ingresar un ID valido");
+                    + "Intente ingresar un ID valido");
             CtrlInterfaz.selecciona(idVentatxt);
         } else {
             try {
@@ -424,16 +426,16 @@ public class Modificaciones extends javax.swing.JFrame {
                 System.out.println("Error en el INSERT...exception ->" + e);
             }
             SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechat ;
+            Date fechat;
             try {
                 fechat = fecha.parse(columnaMap1.get(1).toString().trim());
                 calendario.setDate(fechat);
             } catch (ParseException ex) {
                 Logger.getLogger(Modificaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             totaltxt.setText(columnaMap1.get(2).toString().trim());
-            
+
             CtrlInterfaz.habilita(true, btnModV);
             flag = false;
         }
@@ -444,9 +446,9 @@ public class Modificaciones extends javax.swing.JFrame {
     private void btnMostrarVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVKeyPressed
         if (evt.getKeyChar() == '\n') {
             btnMostrarVActionPerformed(null);
-           ((JTextField) this.calendario.getDateEditor()).setEditable(true); 
-          calendario.getCalendarButton().setEnabled(true);
-           Validaciones.enter(this, evt, totaltxt);
+            ((JTextField) this.calendario.getDateEditor()).setEditable(true);
+            calendario.getCalendarButton().setEnabled(true);
+            Validaciones.enter(this, evt, totaltxt);
         }
     }//GEN-LAST:event_btnMostrarVKeyPressed
 
@@ -455,38 +457,38 @@ public class Modificaciones extends javax.swing.JFrame {
         if (Mensaje.pregunta(this, "¿Esta seguro de que desea modificar el siguiente registro?") == JOptionPane.YES_OPTION) {
             Querys q = new Querys();
             String columnas = "idventa,fecha,total";
-            String values = "'" + idVentatxt.getText() + "'," 
-            + "'" + ((JTextField) this.calendario.getDateEditor()).getText() + "',"
-            + "'" + totaltxt.getText()+"'";
+            String values = "'" + idVentatxt.getText() + "',"
+                    + "'" + ((JTextField) this.calendario.getDateEditor()).getText() + "',"
+                    + "'" + totaltxt.getText() + "'";
 
             try {
-                q.Modificar(con, "venta",columnas, values, "idventa = " + idVentatxt.getText());
+                q.Modificar(con, "venta", columnas, values, "idventa = " + idVentatxt.getText());
             } catch (Exception e) {
                 System.out.println("Error en el UPDATE...exception ->" + e);
             }
 
             Mensaje.exito(this, "Se ha alterado el registro con exito");
-        }else{
+        } else {
             Mensaje.error(this, "No se ha modificado el registro");
         }
         btnLimpiarVActionPerformed(evt);
     }//GEN-LAST:event_btnModVActionPerformed
 
     private void btnModVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnModVKeyPressed
-        if (evt.getKeyChar() == '\n'){
+        if (evt.getKeyChar() == '\n') {
             btnModVActionPerformed(null);
         }
     }//GEN-LAST:event_btnModVKeyPressed
 
     private void btnLimpiarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVActionPerformed
-        CtrlInterfaz.limpia(idVentatxt,((JTextField) this.calendario.getDateEditor()), totaltxt);
-        
-        CtrlInterfaz.habilita(false, btnMostrarV, btnModV,((JTextField) this.calendario.getDateEditor()), totaltxt);
+        CtrlInterfaz.limpia(idVentatxt, ((JTextField) this.calendario.getDateEditor()), totaltxt);
+
+        CtrlInterfaz.habilita(false, btnMostrarV, btnModV, ((JTextField) this.calendario.getDateEditor()), totaltxt);
         CtrlInterfaz.selecciona(idVentatxt);
     }//GEN-LAST:event_btnLimpiarVActionPerformed
 
     private void idVentatxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idVentatxtKeyPressed
-       Validaciones.enterEntero(this, evt, idVentatxt, btnMostrarV);
+        Validaciones.enterEntero(this, evt, idVentatxt, btnMostrarV);
     }//GEN-LAST:event_idVentatxtKeyPressed
 
     private void idVentatxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idVentatxtKeyTyped
@@ -516,9 +518,8 @@ public class Modificaciones extends javax.swing.JFrame {
 
     private void calendarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calendarioKeyPressed
         // TODO add your handling code here:
-        
-            
-        
+
+
     }//GEN-LAST:event_calendarioKeyPressed
 
     private void calendarioInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_calendarioInputMethodTextChanged
@@ -526,10 +527,10 @@ public class Modificaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_calendarioInputMethodTextChanged
 
     private void btnMostrarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVPActionPerformed
-        String campos= "idproducto, cantidad, subtotal";
-        String bd= "productoventa";
-        String condicion= "idventa= "+idventaPtxt.getText();
-        consult.visualizar_tabla5(jTable1,condicion,campos, bd);
+        String campos = "idproducto, cantidad, subtotal";
+        String bd = "productoventa";
+        String condicion = "idventa= " + idventaPtxt.getText();
+        consult.visualizar_tabla5(jTable1, condicion, campos, bd);
     }//GEN-LAST:event_btnMostrarVPActionPerformed
 
     private void btnMostrarVPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVPKeyPressed
@@ -537,15 +538,15 @@ public class Modificaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarVPKeyPressed
 
     private void btnLimpiarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVPActionPerformed
-         CtrlInterfaz.limpia(idventaPtxt);
-        
+        CtrlInterfaz.limpia(idventaPtxt);
+
         CtrlInterfaz.selecciona(idventaPtxt);
-       DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
-        int a = jTable1.getRowCount()-1;
-        for (int i = a; i >= 0; i--) {          
-        tb.removeRow(tb.getRowCount()-1);
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        int a = jTable1.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
+            tb.removeRow(tb.getRowCount() - 1);
         }
-        
+
     }//GEN-LAST:event_btnLimpiarVPActionPerformed
 
     private void idventaPtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idventaPtxtKeyPressed
@@ -553,13 +554,17 @@ public class Modificaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_idventaPtxtKeyPressed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jLCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCerrarMouseClicked
+        this.dispose();
+        new menuPrincipal().setVisible(true);
+    }//GEN-LAST:event_jLCerrarMouseClicked
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiarV;

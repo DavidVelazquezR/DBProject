@@ -373,6 +373,9 @@
           <Image iconType="3" name="/images/return1.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLCerrarMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
