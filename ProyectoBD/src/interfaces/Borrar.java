@@ -433,9 +433,7 @@ public class Borrar extends javax.swing.JFrame {
     private void btnMostrarVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVKeyPressed
         if (evt.getKeyChar() == '\n') {
             btnMostrarVActionPerformed(null);
-           ((JTextField) this.calendario.getDateEditor()).setEditable(true); 
-          calendario.getCalendarButton().setEnabled(true);
-           Validaciones.enter(this, evt, totaltxt);
+           btnModV.setEnabled(true);
         }
     }//GEN-LAST:event_btnMostrarVKeyPressed
 
