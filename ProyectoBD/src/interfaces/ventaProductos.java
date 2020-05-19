@@ -13,8 +13,6 @@ import cjb.ci.Validaciones;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -44,7 +42,7 @@ public class ventaProductos extends javax.swing.JFrame {
     public ventaProductos() {
         initComponents();
         model.setColumnIdentifiers(new Object[]{
-            "ID Producto", "Precio C/U", "Cantidad", "Precio Final"
+            "ID Producto", "Precio C/U", "Cantidad", "Subtotal"
         });
         jTVentas.setModel(model);
     }
@@ -138,8 +136,8 @@ public class ventaProductos extends javax.swing.JFrame {
         jLabel2.setText("Cantidad:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 156, 114, -1));
 
-        jLabel3.setText("Subtotal:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 372, 78, -1));
+        jLabel3.setText("Total:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 30, -1));
 
         jTFVentaID.setEnabled(false);
         jPanel1.add(jTFVentaID, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 96, 180, -1));
@@ -162,7 +160,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Producto", "Precio C/U", "Cantidad", "Subtotal"
             }
         ));
         jTVentas.setGridColor(new java.awt.Color(255, 255, 255));
@@ -307,7 +305,7 @@ public class ventaProductos extends javax.swing.JFrame {
         CtrlInterfaz.limpia(jTFProductID, jTFCantID);
         CtrlInterfaz.selecciona(jTFProductID);
         CtrlInterfaz.habilita(false, jBAgregar);
-        
+
     }//GEN-LAST:event_jBLimpiaActionPerformed
 
     private void jLMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLMinimizarMouseClicked
@@ -347,23 +345,29 @@ public class ventaProductos extends javax.swing.JFrame {
 
         try {
             columnaMap2 = q.Seleccion(con, "id, precioventaun", "producto", "id='" + jTFProductID.getText() + "'", true);
-
-            precioF = Float.parseFloat(jTFCantID.getText()) * Float.parseFloat((String) columnaMap2.get(1));
-            precioTotal += precioF;
+            int fila = buscalineaproducto();
+            if (fila != -1) {
+                int cantidadnueva = Integer.valueOf(jTFCantID.getText()) + (Integer.valueOf(jTVentas.getValueAt(fila, 2).toString()));
+                jTVentas.setValueAt(cantidadnueva, fila, 2);
+                float subtanterior = Float.valueOf(jTVentas.getValueAt(fila, 3).toString());
+                float subtotalnuevo = cantidadnueva * Float.valueOf(jTVentas.getValueAt(fila, 1).toString());
+                jTVentas.setValueAt(subtotalnuevo, fila, 3);
+                precioTotal=precioTotal-subtanterior+subtotalnuevo;
+            } else {
+                precioF = Float.parseFloat(jTFCantID.getText()) * Float.parseFloat((String) columnaMap2.get(1));
+                precioTotal += precioF;
+                columnaMap3.add(columnaMap2.get(0));
+                columnaMap3.add(columnaMap2.get(1));
+                columnaMap3.add(jTFCantID.getText());
+                columnaMap3.add(precioF);
+                model.addRow(new Object[]{
+                    columnaMap3.get(0),
+                    columnaMap3.get(1),
+                    columnaMap3.get(2),
+                    columnaMap3.get(3)
+                });
+            }
             jTFSubtotal.setText(String.valueOf(precioTotal));
-
-            columnaMap3.add(columnaMap2.get(0));
-            columnaMap3.add(columnaMap2.get(1));
-            columnaMap3.add(jTFCantID.getText());
-            columnaMap3.add(precioF);
-
-            model.addRow(new Object[]{
-                columnaMap3.get(0),
-                columnaMap3.get(1),
-                columnaMap3.get(2),
-                columnaMap3.get(3)
-            });
-
         } catch (Exception e) {
             System.out.println("error --> " + e);
         }
@@ -372,6 +376,15 @@ public class ventaProductos extends javax.swing.JFrame {
         CtrlInterfaz.habilita(true, jBVender);
         jBLimpiaActionPerformed(null);
     }//GEN-LAST:event_jBAgregarActionPerformed
+
+    public int buscalineaproducto() {
+        for (int i = 0; i < jTVentas.getRowCount(); i++) {
+            if (jTFProductID.getText().equals(jTVentas.getValueAt(i, 0))) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     private void jBVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVenderActionPerformed
 
