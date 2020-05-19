@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/Consultas.java</file>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/modificaProduct.java</file>
+            <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/bajasProduct.java</file>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/Modificaciones.java</file>
+            <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/Borrar.java</file>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/bd/Querys.java</file>
+            <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/ventaProductos.java</file>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/consultasProduct.java</file>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/bd/sqlConsultas.java</file>
             <file>file:/C:/Users/Edwin/Documents/GitHub/DBProject/ProyectoBD/src/interfaces/menuPrincipal.java</file>

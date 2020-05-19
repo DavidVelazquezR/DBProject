@@ -111,7 +111,7 @@
                               <Component id="btnMostrarV" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Component id="btnLimpiarV" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="91" max="32767" attributes="0"/>
+                              <EmptySpace pref="105" max="32767" attributes="0"/>
                               <Component id="btnModV" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
@@ -165,7 +165,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnMostrarV">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mostrar producto"/>
+                <Property name="text" type="java.lang.String" value="Mostrar venta"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>

@@ -48,6 +48,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu principal");
@@ -193,6 +195,17 @@ public class menuPrincipal extends javax.swing.JFrame {
         jLabel14.setText("Modificaciones");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
 
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrarIMG.jpg"))); // NOI18N
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+
+        jLabel16.setText("Bajas");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 40, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -268,6 +281,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         new Consultas().setVisible(true);
     }//GEN-LAST:event_jLabel13MouseClicked
 
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        this.dispose();
+        new Borrar().setVisible(true);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -313,6 +331,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

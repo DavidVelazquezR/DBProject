@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Edwin
  */
-public class Modificaciones extends javax.swing.JFrame {
+public class Borrar extends javax.swing.JFrame {
     Connection con;
     int xy, xx;
     public ArrayList<Object> columnaMap1 = new ArrayList();
@@ -39,36 +39,45 @@ public class Modificaciones extends javax.swing.JFrame {
     /**
      * Creates new form Modificaciones
      */
-    public Modificaciones() {
+    public Borrar() {
         initComponents();
         ((JTextField) this.calendario.getDateEditor()).setEditable(false);  
         popupmenu();
     }
     public void popupmenu(){
     JPopupMenu popupMenu = new JPopupMenu();
-    JMenuItem menuItemAdd = new JMenuItem("Modificar");
+    JMenuItem menuItemAdd = new JMenuItem("Borrar");
     menuItemAdd.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
            
+ 
             
+//            if (jTable1.getSelectedColumn()==1) {
+//                String columnas = "cantidad";
+//            
+//            String values =
+//            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
+//            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0));          
+//            }else if (jTable1.getSelectedColumn()==2) {
+//               String columnas = "subtotal";
+//            
+//            String values = 
+//            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
+//            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());  
+//            }
+
+           
             Querys q = new Querys();
             
-            if (jTable1.getSelectedColumn()==1) {
-                String columnas = "cantidad";
-            
-            String values =
-            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
-            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0));          
-            }else if (jTable1.getSelectedColumn()==2) {
-               String columnas = "subtotal";
-            
-            String values = 
-            "'" + jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn()).toString()+"'";
-            q.Modificar(con, "productoventa",columnas, values, "idventa = " + idventaPtxt.getText() +" AND "+ "idproducto = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());  
-            }
-
-            
+                q.Delete(con, "productoventa", "idventa",  idventaPtxt.getText());
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        int a = jTable1.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {          
+        tb.removeRow(tb.getRowCount()-1);
+        }
+          
+       
            
        
         }
@@ -185,7 +194,7 @@ public class Modificaciones extends javax.swing.JFrame {
 
         totaltxt.setEnabled(false);
 
-        btnModV.setText("Modificar");
+        btnModV.setText("Borrar");
         btnModV.setEnabled(false);
         btnModV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +236,7 @@ public class Modificaciones extends javax.swing.JFrame {
                         .addComponent(btnMostrarV)
                         .addGap(68, 68, 68)
                         .addComponent(btnLimpiarV)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                         .addComponent(btnModV)
                         .addGap(103, 103, 103))))
         );
@@ -429,7 +438,7 @@ public class Modificaciones extends javax.swing.JFrame {
                 fechat = fecha.parse(columnaMap1.get(1).toString().trim());
                 calendario.setDate(fechat);
             } catch (ParseException ex) {
-                Logger.getLogger(Modificaciones.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             totaltxt.setText(columnaMap1.get(2).toString().trim());
@@ -452,22 +461,17 @@ public class Modificaciones extends javax.swing.JFrame {
 
     private void btnModVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModVActionPerformed
 
-        if (Mensaje.pregunta(this, "¿Esta seguro de que desea modificar el siguiente registro?") == JOptionPane.YES_OPTION) {
+       if (Mensaje.pregunta(this, "¿Esta seguro de que desea eliminar el siguiente registro?") == JOptionPane.YES_OPTION) {
             Querys q = new Querys();
-            String columnas = "idventa,fecha,total";
-            String values = "'" + idVentatxt.getText() + "'," 
-            + "'" + ((JTextField) this.calendario.getDateEditor()).getText() + "',"
-            + "'" + totaltxt.getText()+"'";
-
             try {
-                q.Modificar(con, "venta",columnas, values, "idventa = " + idVentatxt.getText());
+                q.Delete(con, "producto", "id",  idVentatxt.getText());
             } catch (Exception e) {
-                System.out.println("Error en el UPDATE...exception ->" + e);
+                System.out.println("Error en el INSERT...exception ->" + e);
             }
-
-            Mensaje.exito(this, "Se ha alterado el registro con exito");
+            
+            Mensaje.exito(this, "Se ha eliminado el registro con exito");
         }else{
-            Mensaje.error(this, "No se ha modificado el registro");
+            Mensaje.error(this, "No se ha borrado el registro");
         }
         btnLimpiarVActionPerformed(evt);
     }//GEN-LAST:event_btnModVActionPerformed
