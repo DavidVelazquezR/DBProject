@@ -6,8 +6,8 @@
 -ALTA VENTA 			-----------------------------------------DAVID	HECHO
 -ALTA PRODUCTOVENTA		-----------------------------------------DAVID	HECHO
 
--MODIFICAR VENTA		-----------------------------------------
--MODIFICAR PRODUCTOVENTA	-----------------------------------------
+-MODIFICAR VENTA		-----------------------------------------HECHO
+-MODIFICAR PRODUCTOVENTA	-----------------------------------------HECHO
 
 -BAJA VENTA			-----------------------------------------EDWIN
 -BAJA PRODUCTOVENTA		-----------------------------------------EDWIN
