@@ -123,7 +123,7 @@ public class ventaProductos extends javax.swing.JFrame {
                 jBVenderActionPerformed(evt);
             }
         });
-        jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 408, 84, -1));
+        jPanel1.add(jBVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 408, 84, -1));
 
         jLTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLTitulo.setText("Venta de productos");
