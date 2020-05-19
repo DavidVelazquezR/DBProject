@@ -264,7 +264,8 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        // TODO add your handling code here:
+        this.dispose();
+        new Consultas().setVisible(true);
     }//GEN-LAST:event_jLabel13MouseClicked
 
     /**
