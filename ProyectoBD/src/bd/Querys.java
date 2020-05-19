@@ -208,7 +208,7 @@ public class Querys
 
         } catch (Exception e)
         {
-            System.out.println("Exception, no hay datos");
+            System.out.println("Exception, no hay datos -"+ e);
         }
         return reg;
     }
