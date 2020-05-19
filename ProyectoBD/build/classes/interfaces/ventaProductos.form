@@ -88,13 +88,14 @@
         <Component class="javax.swing.JButton" name="jBVender">
           <Properties>
             <Property name="text" type="java.lang.String" value="Vender"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBVenderActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="234" y="408" width="84" height="-1"/>
+              <AbsoluteConstraints x="198" y="408" width="84" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
