@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,8 +25,8 @@ public class ventaProductos extends javax.swing.JFrame {
 
     Connection con;
     int xy, xx;
-    static int flag = 0;
-    static float precioF = 0;
+    int flag = 0;
+    float precioF = 0;
     int toDeleteIndex = -1;
     DefaultTableModel model = new DefaultTableModel();
     Querys q = new Querys();
@@ -34,6 +35,7 @@ public class ventaProductos extends javax.swing.JFrame {
     ArrayList<Object> columnaMap2 = new ArrayList();
     ArrayList<Object> columnaMap3 = new ArrayList();
 
+    Calendar c = Calendar.getInstance();
     float precioTotal = 0;
 
     /**
@@ -41,6 +43,10 @@ public class ventaProductos extends javax.swing.JFrame {
      */
     public ventaProductos() {
         initComponents();
+        model.setColumnIdentifiers(new Object[]{
+            "ID Producto", "Precio C/U", "Cantidad", "Precio Final"
+        });
+        jTVentas.setModel(model);
     }
 
     /**
@@ -111,6 +117,7 @@ public class ventaProductos extends javax.swing.JFrame {
         jPanel1.add(jTFSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 366, 180, -1));
 
         jBVender.setText("Vender");
+        jBVender.setEnabled(false);
         jBVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBVenderActionPerformed(evt);
@@ -262,7 +269,7 @@ public class ventaProductos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         con = ManipulaDBC.conectaDB();
-        Querys q = new Querys();
+
         int ID;
         try {
             columnaMap1 = q.Seleccion(con, "idventa", "venta", "", false);
@@ -285,12 +292,22 @@ public class ventaProductos extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         ManipulaDBC.desconectaDB(con);
+        jBLimpiaActionPerformed(null);
+
+        int rowCount = model.getRowCount();
+
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        flag = 0;
     }//GEN-LAST:event_formWindowClosed
 
     private void jBLimpiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiaActionPerformed
+
         CtrlInterfaz.limpia(jTFProductID, jTFCantID);
         CtrlInterfaz.selecciona(jTFProductID);
         CtrlInterfaz.habilita(false, jBAgregar);
+        
     }//GEN-LAST:event_jBLimpiaActionPerformed
 
     private void jLMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLMinimizarMouseClicked
@@ -328,15 +345,35 @@ public class ventaProductos extends javax.swing.JFrame {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
-        mostrar();
+        try {
+            columnaMap2 = q.Seleccion(con, "id, precioventaun", "producto", "id='" + jTFProductID.getText() + "'", true);
+
+            precioF = Float.parseFloat(jTFCantID.getText()) * Float.parseFloat((String) columnaMap2.get(1));
+            precioTotal += precioF;
+            jTFSubtotal.setText(String.valueOf(precioTotal));
+
+            columnaMap3.add(columnaMap2.get(0));
+            columnaMap3.add(columnaMap2.get(1));
+            columnaMap3.add(jTFCantID.getText());
+            columnaMap3.add(precioF);
+
+            model.addRow(new Object[]{
+                columnaMap3.get(0),
+                columnaMap3.get(1),
+                columnaMap3.get(2),
+                columnaMap3.get(3)
+            });
+
+        } catch (Exception e) {
+            System.out.println("error --> " + e);
+        }
+        columnaMap3.clear();
+        columnaMap2.clear();
+        CtrlInterfaz.habilita(true, jBVender);
         jBLimpiaActionPerformed(null);
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     private void jBVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVenderActionPerformed
-
-        Date fecha = new Date();
-        Calendar c = Calendar.getInstance();
-        Querys q = new Querys();
 
         String dia = Integer.toString(c.get(Calendar.DATE));
         String mes = Integer.toString(c.get(Calendar.MONTH));
@@ -369,20 +406,17 @@ public class ventaProductos extends javax.swing.JFrame {
         }
 
         Mensaje.exito(this, "Se realizo la venta correctamente el producto");
+
+        CtrlInterfaz.limpia(jTFSubtotal);
+        int rowCount = model.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
         flag = 0;
         precioF = 0;
-        toDeleteIndex = -1;
-        jBLimpiaActionPerformed(null);
-        CtrlInterfaz.limpia(jTFSubtotal);
         precioTotal = 0;
-        values = "";
-        columnaMap1.clear();
-        columnaMap2.clear();
-        columnaMap3.clear();
-
         formWindowOpened(null);
-        model.setRowCount(0);
-
+        CtrlInterfaz.habilita(false, jBVender);
     }//GEN-LAST:event_jBVenderActionPerformed
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
@@ -400,7 +434,7 @@ public class ventaProductos extends javax.swing.JFrame {
         try {
             if (toDeleteIndex != -1) {
                 precioTotal -= (float) jTVentas.getValueAt(toDeleteIndex, 3);
-
+                flag = flag - 4;
                 model.removeRow(toDeleteIndex);
                 jTFSubtotal.setText(String.valueOf(precioTotal));
             }
@@ -415,39 +449,6 @@ public class ventaProductos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBAgregarKeyPressed
 
-    private void mostrar() {
-        try {
-            columnaMap2 = q.Seleccion(con, "id, precioventaun", "producto", "id='" + jTFProductID.getText() + "'", true);
-
-            precioF = Float.parseFloat(jTFCantID.getText()) * Float.parseFloat((String) columnaMap2.get(1));
-            precioTotal += precioF;
-            jTFSubtotal.setText(String.valueOf(precioTotal));
-
-            columnaMap3.add(columnaMap2.get(0));
-            columnaMap3.add(columnaMap2.get(1));
-            columnaMap3.add(jTFCantID.getText());
-            columnaMap3.add(precioF);
-            System.out.println(columnaMap3.size());
-
-            model.setColumnIdentifiers(new Object[]{
-                "ID Producto", "Precio C/U", "Cantidad", "Precio Final"
-            });
-            while (flag != columnaMap3.size()) {
-                model.addRow(new Object[]{
-                    columnaMap3.get(flag),
-                    columnaMap3.get(flag + 1),
-                    columnaMap3.get(flag + 2),
-                    columnaMap3.get(flag + 3)
-                });
-                flag = flag + 4;
-            }
-
-            jTVentas.setModel(model);
-        } catch (Exception e) {
-            System.out.println("error --> " + e);
-        }
-
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
