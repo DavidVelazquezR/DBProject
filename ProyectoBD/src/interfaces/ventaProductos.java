@@ -389,7 +389,7 @@ public class ventaProductos extends javax.swing.JFrame {
     private void jBVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVenderActionPerformed
 
         String dia = Integer.toString(c.get(Calendar.DATE));
-        String mes = Integer.toString(c.get(Calendar.MONTH));
+        String mes = Integer.toString(c.get(Calendar.MONTH)+1);
         String annio = Integer.toString(c.get(Calendar.YEAR));
 
         String values = "'" + jTFVentaID.getText() + "',"

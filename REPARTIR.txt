@@ -12,9 +12,12 @@
 -BAJA VENTA			-----------------------------------------EDWIN HECHO
 -BAJA PRODUCTOVENTA		-----------------------------------------EDWIN HECHO
 
--CONSULTA PRODUCTOVENTA		-----------------------------------------EDWIN
--CONSULTA VENTAS		-----------------------------------------EDWIN
+-CONSULTA PRODUCTOVENTA		-----------------------------------------EDWIN HECHO
+-CONSULTA VENTAS		-----------------------------------------EDWIN HECHO
 
+-CONSULTA GENERAL PRODUCTO	-----------------------------------------
+-CONSULTA GENERAL PRODUCTOVENTA	-----------------------------------------
+-CONSULTA GENERAL VENTA		-----------------------------------------
 
 
 -corte mensual los dias 28	-----------------------------------------URI	HECHO

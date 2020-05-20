@@ -79,14 +79,14 @@ FROM venta
 WHERE fecha=CURDATE();
 
 SELECT idventa AS "Venta" 
-,total 
+,SUM(total)
 FROM venta 
 WHERE fecha=CURDATE();
 
 ---cantidad de x producto vendidos en un dia
 SELECT producto.id AS "Producto" 
 ,producto.descripcion AS "Descripcion" 
-,productoventa.cantidad "Cantidad vendida" 
+,productoventa.cantidad AS "Cantidad_vendida" 
 FROM producto, venta, productoventa 
 WHERE venta.fecha=CURDATE() 
 AND productoventa.idventa=venta.idventa 

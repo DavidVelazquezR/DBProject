@@ -451,7 +451,7 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String campos= "producto.id AS Producto  ,producto.descripcion AS Descripcion ,(SUM(productoventa.cantidad))";//SELECT
+        String campos= "producto.id AS Producto  ,producto.descripcion AS Descripcion ,(productoventa.cantidad)";//SELECT
         String bd= "producto, venta, productoventa";//FROM
         String condicion= "venta.fecha=CURDATE() AND productoventa.idventa=venta.idventa  AND producto.id=productoventa.idproducto ORDER BY productoventa.cantidad DESC"; //WHERE
         consult.visualizar_tabla3(jTable3,condicion,campos, bd);
