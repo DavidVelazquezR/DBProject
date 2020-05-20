@@ -50,6 +50,7 @@ INSERT INTO productoventa VALUES(2,2,1,8.5);
 INSERT INTO productoventa VALUES(3,3,2,46);
 INSERT INTO productoventa VALUES(3,2,1,8.5);
 
+---/productos vendidos en x venta
 SELECT producto.id AS "PRODUCTO"
 ,producto.descripcion
 ,productoventa.cantidad 
@@ -58,10 +59,12 @@ WHERE venta.idventa=X
 AND venta.idventa=productoventa.idventa 
 AND producto.id=productoventa.idproducto;
 
+---corte mensual los dias 28
 SELECT (SUM(total)) 
 FROM venta 
 WHERE MONTH(fecha)=MONTH(CURDATE()) AND DAYOFMONTH(CURDATE())="28";
 
+---productos que se ecuentran por debajo de x cantidad
 SELECT id AS "PRODUCTO" 
 ,descripcion 
 ,cantidad 
@@ -69,6 +72,7 @@ FROM producto
 WHERE cantidad<X
 ORDER BY cantidad DESC;
 
+---enlistar las ventas hechas en un dia y obtener el corte del dia X
 SELECT idventa AS "Venta" 
 ,total 
 FROM venta 
@@ -79,6 +83,7 @@ SELECT idventa AS "Venta"
 FROM venta 
 WHERE fecha=CURDATE();
 
+---cantidad de x producto vendidos en un dia
 SELECT producto.id AS "Producto" 
 ,producto.descripcion AS "Descripcion" 
 ,productoventa.cantidad AS "Cantidad_vendida" 
