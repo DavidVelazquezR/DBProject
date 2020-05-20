@@ -6,6 +6,8 @@
 package interfaces;
 
 import bd.sqlConsultas;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /**
@@ -410,11 +412,16 @@ public class Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        consult= new sqlConsultas();
-        float ver= consult.cortemensual();
-        System.out.println("pre.."+ver);
+        LocalDate a = LocalDate.now(ZoneId.systemDefault());
+        LocalDate b = LocalDate.of(a.getYear(), a.getMonth(), 28);
+        if(a==b){
+            consult= new sqlConsultas();
+            float ver= consult.cortemensual();
+            System.out.println("pre.."+ver);
         
-        Muestra.setText(ver +" pesos");
+            Muestra.setText(ver +" pesos");
+        }else
+            JOptionPane.showMessageDialog(null, "Aun no es dia 28 del mes", "Alerta", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
