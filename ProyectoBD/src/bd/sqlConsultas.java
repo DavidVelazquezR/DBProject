@@ -115,4 +115,38 @@ public class sqlConsultas {
         tabla.setRowHeight(16);
         tabla.setModel(atm);         
     }
+    
+    public void visualizar_tablaP(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"ID-Producto","Descripcion","Cant","Precio Compra","Precio Unitario","Precio Mayoreo","Cant. Mayoreo"};        
+        atm= q.SeleccionTable2(con, titulo,condicion,campos,tablabd);
+        
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
+    public void visualizar_tablaV(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"ID-Venta","Fecha","Total"};        
+        atm= q.SeleccionTable2(con, titulo,condicion,campos,tablabd);
+        
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
+    public void visualizar_tablaPV(JTable tabla,String condicion, String campos, String tablabd){
+        Connection con;//objeto que permite la conexion a la BD(MySql) 
+        con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
+        Querys q = new Querys();
+        DefaultTableModel atm=new editTabletrue();
+        String []titulo=new String[] {"ID-Venta","ID-Producto","Cantidad","SubTotal"};        
+        atm= q.SeleccionTable2(con, titulo,condicion,campos,tablabd);
+        
+        tabla.setRowHeight(16);
+        tabla.setModel(atm);         
+    }
 }

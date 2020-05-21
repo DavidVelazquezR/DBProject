@@ -257,4 +257,31 @@ public class Querys
         
         return modelatm;
     }
+    public DefaultTableModel SeleccionTable2(Connection con,String[] titulo, String condicion,String campos, String tabla){   
+        DefaultTableModel modelatm=new editTabletrue();
+        modelatm.setColumnIdentifiers(titulo);               
+                                
+        try{
+            Statement stmt = con.createStatement();                        
+            //String myquery = "SELECT id AS PRODUCTO ,descripcion ,cantidad  FROM producto WHERE cantidad < "+num+"  ORDER BY cantidad DESC";                        
+            
+            String myquery = " select " + campos + " from " + tabla;
+            System.out.println(myquery); //impresion de pureba
+            ResultSet rs = stmt.executeQuery(myquery);
+
+            while (rs.next()){                  
+                Vector<Object> reg = new Vector();
+                for (int i = 1; i < (rs.getMetaData().getColumnCount()) + 1; i++)
+                {  
+                    reg.add(rs.getObject(i));
+                }                                
+                modelatm.addRow(reg);               
+            }            
+            return modelatm;            
+        } catch (Exception e){
+             System.out.println("Exception, no hay datos");
+        }
+        
+        return modelatm;
+    }
 }
