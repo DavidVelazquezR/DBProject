@@ -9,8 +9,8 @@ CREATE DATABASE tienda;
 USE tienda;
 
 CREATE TABLE producto ( id int(11) NOT NULL UNIQUE AUTO_INCREMENT
-,descripcion varchar(35) NOT NULL
-,cantidad int(11) NOT NULL UNIQUE DEFAULT '0'
+,descripcion varchar(35) NOT NULL UNIQUE
+,cantidad int(11) NOT NULL DEFAULT '0'
 ,preciocomp DECIMAL(5,2) NOT NULL
 ,precioventaun DECIMAL(5,2) NOT NULL
 ,precioventama DECIMAL(5,2) NOT NULL
@@ -89,8 +89,9 @@ SELECT idventa AS "Venta"
 FROM venta 
 WHERE fecha=CURDATE();
 
----cantidad de x producto vendidos en un dia
-SELECT producto.id AS "Producto" 
+---productos vendidos en un dia
+SELECT productoventa.idventa AS "Venta"
+,producto.id AS "Producto" 
 ,producto.descripcion AS "Descripcion" 
 ,productoventa.cantidad AS "Cantidad_vendida" 
 FROM producto, venta, productoventa 

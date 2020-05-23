@@ -202,10 +202,10 @@ public class menuPrincipal extends javax.swing.JFrame {
                 jLabel15MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, -1, -1));
 
-        jLabel16.setText("Bajas");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 274, 30, 10));
+        jLabel16.setText("Bajas Ventas");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, -1, 10));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/BD.png"))); // NOI18N
         jLabel17.setText("Consultas Generales");

@@ -245,20 +245,20 @@ public class Consultas extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Producto", "Descripcion", "Cantidad Vendida"
+                "Vneta", "Producto", "Descripcion", "Cantidad Vendida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -414,7 +414,9 @@ public class Consultas extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         LocalDate a = LocalDate.now(ZoneId.systemDefault());
         LocalDate b = LocalDate.of(a.getYear(), a.getMonth(), 28);
-        if(a==b){
+        System.out.println("a:"+a);
+        System.out.println("b:"+b);
+        if(a.equals(b)){
             consult= new sqlConsultas();
             float ver= consult.cortemensual();
             System.out.println("pre.."+ver);
@@ -458,7 +460,7 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String campos= "producto.id AS Producto  ,producto.descripcion AS Descripcion ,(productoventa.cantidad)";//SELECT
+        String campos= "productoventa.idventa, producto.id AS Producto  ,producto.descripcion AS Descripcion ,productoventa.cantidad";//SELECT
         String bd= "producto, venta, productoventa";//FROM
         String condicion= "venta.fecha=CURDATE() AND productoventa.idventa=venta.idventa  AND producto.id=productoventa.idproducto ORDER BY productoventa.cantidad DESC"; //WHERE
         consult.visualizar_tabla3(jTable3,condicion,campos, bd);
@@ -514,10 +516,6 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

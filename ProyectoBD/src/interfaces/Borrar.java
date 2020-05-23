@@ -31,21 +31,20 @@ import javax.swing.table.DefaultTableModel;
  * @author Edwin
  */
 public class Borrar extends javax.swing.JFrame {
+
     Connection con;
     int xy, xx;
     public ArrayList<Object> columnaMap1 = new ArrayList();
-     sqlConsultas consult= new sqlConsultas();
-     
+    sqlConsultas consult = new sqlConsultas();
+
     /**
      * Creates new form Modificaciones
      */
     public Borrar() {
         initComponents();
-        ((JTextField) this.calendario.getDateEditor()).setEditable(false);  
+        ((JTextField) this.calendario.getDateEditor()).setEditable(false);
     }
-    
-     
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -405,7 +404,7 @@ public class Borrar extends javax.swing.JFrame {
         }
 
         for (int i = 0; i < columnaMap1.size(); i++) {
-            if (columnaMap1.get(i).toString().trim().equals( idVentatxt.getText())) {
+            if (columnaMap1.get(i).toString().trim().equals(idVentatxt.getText())) {
                 flag = false;
                 break;
             } else {
@@ -414,7 +413,7 @@ public class Borrar extends javax.swing.JFrame {
         }
         if (flag) {
             Mensaje.error(this, "El ID que intenta buscar no existe\n"
-                + "Intente ingresar un ID valido");
+                    + "Intente ingresar un ID valido");
             CtrlInterfaz.selecciona(idVentatxt);
         } else {
             try {
@@ -423,16 +422,16 @@ public class Borrar extends javax.swing.JFrame {
                 System.out.println("Error en el INSERT...exception ->" + e);
             }
             SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechat ;
+            Date fechat;
             try {
                 fechat = fecha.parse(columnaMap1.get(1).toString().trim());
                 calendario.setDate(fechat);
             } catch (ParseException ex) {
                 Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             totaltxt.setText(columnaMap1.get(2).toString().trim());
-            
+
             CtrlInterfaz.habilita(true, btnModV);
             flag = false;
         }
@@ -443,43 +442,43 @@ public class Borrar extends javax.swing.JFrame {
     private void btnMostrarVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVKeyPressed
         if (evt.getKeyChar() == '\n') {
             btnMostrarVActionPerformed(null);
-           btnModV.setEnabled(true);
+            btnModV.setEnabled(true);
         }
     }//GEN-LAST:event_btnMostrarVKeyPressed
 
     private void btnModVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModVActionPerformed
 
-       if (Mensaje.pregunta(this, "¿Esta seguro de que desea eliminar el siguiente registro?") == JOptionPane.YES_OPTION) {
+        if (Mensaje.pregunta(this, "¿Esta seguro de que desea eliminar el siguiente registro?") == JOptionPane.YES_OPTION) {
             Querys q = new Querys();
             try {
-                q.Delete(con, "producto", "id",  idVentatxt.getText());
+                q.Delete(con, "producto", "id", idVentatxt.getText());
             } catch (Exception e) {
                 System.out.println("Error en el INSERT...exception ->" + e);
             }
-            
+
             Mensaje.exito(this, "Se ha eliminado el registro con exito");
-        }else{
+        } else {
             Mensaje.error(this, "No se ha borrado el registro");
         }
         btnLimpiarVActionPerformed(evt);
     }//GEN-LAST:event_btnModVActionPerformed
 
     private void btnModVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnModVKeyPressed
-        if (evt.getKeyChar() == '\n'){
+        if (evt.getKeyChar() == '\n') {
             btnModVActionPerformed(null);
         }
     }//GEN-LAST:event_btnModVKeyPressed
 
     private void btnLimpiarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVActionPerformed
-        CtrlInterfaz.limpia(idVentatxt,((JTextField) this.calendario.getDateEditor()), totaltxt);
-        
-        CtrlInterfaz.habilita(false, btnMostrarV, btnModV,((JTextField) this.calendario.getDateEditor()), totaltxt);
+        CtrlInterfaz.limpia(idVentatxt, ((JTextField) this.calendario.getDateEditor()), totaltxt);
+
+        CtrlInterfaz.habilita(false, btnMostrarV, btnModV, ((JTextField) this.calendario.getDateEditor()), totaltxt);
         CtrlInterfaz.selecciona(idVentatxt);
         btnModVP.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarVActionPerformed
 
     private void idVentatxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idVentatxtKeyPressed
-       Validaciones.enterEntero(this, evt, idVentatxt, btnMostrarV);
+        Validaciones.enterEntero(this, evt, idVentatxt, btnMostrarV);
     }//GEN-LAST:event_idVentatxtKeyPressed
 
     private void idVentatxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idVentatxtKeyTyped
@@ -509,9 +508,8 @@ public class Borrar extends javax.swing.JFrame {
 
     private void calendarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calendarioKeyPressed
         // TODO add your handling code here:
-        
-            
-        
+
+
     }//GEN-LAST:event_calendarioKeyPressed
 
     private void calendarioInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_calendarioInputMethodTextChanged
@@ -520,31 +518,32 @@ public class Borrar extends javax.swing.JFrame {
 
     private void btnMostrarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarVPActionPerformed
         this.setCursor(WAIT_CURSOR);
-        String campos= "idproducto, cantidad, subtotal";
-        String bd= "productoventa";
-        String condicion= "idventa= "+idventaPtxt.getText();
-        consult.visualizar_tabla5(jTable1,condicion,campos, bd);
+        String campos = "idproducto, cantidad, subtotal";
+        String bd = "productoventa";
+        String condicion = "idventa= " + idventaPtxt.getText();
+        consult.visualizar_tabla5(jTable1, condicion, campos, bd);
+        btnModVP.setEnabled(true);
         this.setCursor(DEFAULT_CURSOR);
     }//GEN-LAST:event_btnMostrarVPActionPerformed
 
     private void btnMostrarVPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnMostrarVPKeyPressed
         if (evt.getKeyChar() == '\n') {
             btnMostrarVPActionPerformed(null);
-           
-           btnModVP.setEnabled(true);
+
+            btnModVP.setEnabled(true);
         }
     }//GEN-LAST:event_btnMostrarVPKeyPressed
 
     private void btnLimpiarVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarVPActionPerformed
-         CtrlInterfaz.limpia(idventaPtxt);
-        
+        CtrlInterfaz.limpia(idventaPtxt);
+
         CtrlInterfaz.selecciona(idventaPtxt);
-       DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
-        int a = jTable1.getRowCount()-1;
-        for (int i = a; i >= 0; i--) {          
-        tb.removeRow(tb.getRowCount()-1);
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        int a = jTable1.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
+            tb.removeRow(tb.getRowCount() - 1);
         }
-        
+
     }//GEN-LAST:event_btnLimpiarVPActionPerformed
 
     private void idventaPtxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idventaPtxtKeyPressed
@@ -552,26 +551,26 @@ public class Borrar extends javax.swing.JFrame {
     }//GEN-LAST:event_idventaPtxtKeyPressed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnModVPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModVPActionPerformed
         if (Mensaje.pregunta(this, "¿Esta seguro de que desea eliminar el siguiente registro?") == JOptionPane.YES_OPTION) {
             Querys q = new Querys();
             try {
-                q.Delete(con, "productoventa", "idventa",  idventaPtxt.getText());
-        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
-        int a = jTable1.getRowCount()-1;
-        for (int i = a; i >= 0; i--) {          
-        tb.removeRow(tb.getRowCount()-1);
-        }
-          
+                q.Delete(con, "productoventa", "idventa", idventaPtxt.getText());
+                DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+                int a = jTable1.getRowCount() - 1;
+                for (int i = a; i >= 0; i--) {
+                    tb.removeRow(tb.getRowCount() - 1);
+                }
+
             } catch (Exception e) {
                 System.out.println("Error en el INSERT...exception ->" + e);
             }
-            
+
             Mensaje.exito(this, "Se ha eliminado el registro con exito");
-        }else{
+        } else {
             Mensaje.error(this, "No se ha borrado el registro");
         }
         btnLimpiarVActionPerformed(evt);
@@ -586,7 +585,7 @@ public class Borrar extends javax.swing.JFrame {
     }//GEN-LAST:event_idventaPtxtKeyTyped
 
     private void jLCerrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLCerrarKeyPressed
-        
+
     }//GEN-LAST:event_jLCerrarKeyPressed
 
     private void jLCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLCerrarMouseClicked
@@ -597,7 +596,6 @@ public class Borrar extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpiarV;

@@ -419,7 +419,7 @@ public class altasProduct extends javax.swing.JFrame {
         } else {
             String columns = "";
             String values = "'" + jTFIDProduct.getText() + "',"
-                    + "'" + jTFNomProduct.getText() + " " + jTFMarcaProduct.getText() + " " + jTFMarcaProduct.getText() + "',"
+                    + "'" + jTFNomProduct.getText() + " " + jTFMarcaProduct.getText() + " " + jTFMedidaPesoProduct.getText() + "',"
                     + "'" + jTFCant.getText() + "',"
                     + "'" + jTFPrecComp.getText() + "',"
                     + "'" + jTFPrecVU.getText() + "',"

@@ -87,7 +87,7 @@ public class sqlConsultas {
         con= ManipulaDBC.conectaDB();//Objeto que permite manipular a la BD
         Querys q = new Querys();
         DefaultTableModel atm=new editTabletrue();
-        String []titulo=new String[] {"Producto","Descripcion", "Cantidad Vendida"};        
+        String []titulo=new String[] {"Venta","Producto","Descripcion", "Cantidad Vendida"};        
         atm= q.SeleccionTable(con, titulo,condicion,campos,tablabd);         
         System.out.println("ATM: "+atm);
         tabla.setRowHeight(16);
